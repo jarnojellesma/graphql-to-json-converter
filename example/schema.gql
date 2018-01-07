@@ -1,0 +1,48 @@
+
+type User {
+  id: Int!
+  name: String!
+  avatar: Photo
+}
+
+type Message {
+  id: Int!
+  text: String
+  user: User
+}
+
+input PhotoInput {
+  file: String!
+  name: String!
+}
+
+input UserInput {
+  name: String!
+  photo: InputPhoto
+}
+
+type Query {
+  user: User
+  users: [Users]
+  message: Message
+  messages: [Message]
+}
+
+type Mutation {
+  createUser(data: UserInput!): User
+  createMessage(text: String): Message
+  uploadPhotos(
+    data: [PhotoInput],
+    repository: ID,
+  ): [Photo]
+}
+
+type Subscription {
+  messageCreated(repository: Int): Message
+}
+
+type schema {
+  query: Query
+  mutation: Mutation
+  subscription: Subscription
+}
