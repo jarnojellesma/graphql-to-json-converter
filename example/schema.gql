@@ -23,7 +23,7 @@ input UserInput {
 
 type Query {
   user: User
-  users: [Users]
+  users: [User]
   message: Message
   messages: [Message]
 }
@@ -45,4 +45,25 @@ type schema {
   query: Query
   mutation: Mutation
   subscription: Subscription
+}
+
+interface Character {
+  id: ID!
+  name: String!
+}
+
+type Person implements Character {
+  id: ID!
+  name: String!
+  last: String!
+  friends: [friend]
+}
+
+union friend = Person | pet | robot | bot
+
+union enemy = Person | pet
+
+type pet {
+     id: ID!
+     name: String!
 }
