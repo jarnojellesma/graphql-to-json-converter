@@ -41,7 +41,7 @@
         "required": false
       },
       "users": {
-        "type": "Users",
+        "type": "User",
         "array": true,
         "required": false
       },
@@ -112,6 +112,49 @@
         "array": false,
         "required": false
       }
+    },
+    "Person": {
+      "implements": {
+        "Character": {
+          "id": {
+            "type": "ID",
+            "array": false,
+            "required": true
+          },
+          "name": {
+            "type": "String",
+            "array": false,
+            "required": true
+          },
+          "last": {
+            "type": "String",
+            "array": false,
+            "required": true
+          },
+          "friends": {
+            "type": "Friend",
+            "array": true,
+            "required": false
+          },
+          "enemies": {
+            "type": "Enemy",
+            "array": true,
+            "required": false
+          }
+        }
+      }
+    },
+    "Pet": {
+      "id": {
+        "type": "ID",
+        "array": false,
+        "required": true
+      },
+      "name": {
+        "type": "String",
+        "array": false,
+        "required": true
+      }
     }
   },
   "input": {
@@ -155,6 +198,32 @@
       "type": "Subscription",
       "array": false,
       "required": false
+    }
+  },
+  "interface": {
+    "Character": {
+      "id": {
+        "type": "ID",
+        "array": false,
+        "required": true
+      },
+      "name": {
+        "type": "String",
+        "array": false,
+        "required": true
+      }
+    }
+  },
+  "union": {
+    "Friend": {
+      "Person": {},
+      "Pet": {},
+      "Robot": {},
+      "Bot": {}
+    },
+    "Enemy": {
+      "Person": {},
+      "Pet": {}
     }
   }
 }
